@@ -14,9 +14,11 @@ cd sinatra_tutorial
 ```
 
 2. Add application file
+
 ```bash
 touch app.rb
 ```
+
 ```ruby
 # app.rb
 
@@ -30,10 +32,13 @@ class HelloWorldApp < Sinatra::Base
 
 end
 ```
+
 3. Add config file
+
 ```bash
 touch config.ru
 ```
+
 ```ruby
 # config.ru
 
@@ -41,8 +46,13 @@ require './app'
 
 run HelloWorldApp
 ```
+
 4. Run application
 
 ```bash
 rackup
 ```
+
+
+
+
