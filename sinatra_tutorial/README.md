@@ -6,14 +6,14 @@
 
 ## Instructions
 
-1. Create a new directory from command line:
+#### Create a new directory from command line:
 
 ```bash
 mkdir sinatra_tutorial
 cd sinatra_tutorial
 ```
 
-2. Add application file
+#### Add application file
 
 ```bash
 touch app.rb
@@ -33,7 +33,7 @@ class HelloWorldApp < Sinatra::Base
 end
 ```
 
-3. Add config file
+#### Add config file
 
 ```bash
 touch config.ru
@@ -47,7 +47,7 @@ require './app'
 run HelloWorldApp
 ```
 
-4. Run application
+#### Run application
 
 ```bash
 rackup
