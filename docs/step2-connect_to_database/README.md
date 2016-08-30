@@ -7,7 +7,7 @@
 
 1. Create _database.yml_ file
   ```yml
-  # database.yml
+  # config/database.yml
 
   ---
   development:
@@ -30,6 +30,15 @@
 1. Create a model
 
   ```ruby
-    # Note
+    # models/note.rb
+    
+    class Note < ActiveRecord::Base
+      
+    end
+  ```
 
+1. Add migration
+
+  ```bash
+    bundle exec rake db:migrate NAME=create_notes
   ```
