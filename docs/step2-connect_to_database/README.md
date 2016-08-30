@@ -12,7 +12,7 @@
   ---
   development:
     adapter: postgresql
-    database: fantasy_svc_dev
+    database: my_database
   ```
 
 1. Connect to database with ActiveRecord
