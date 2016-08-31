@@ -1,4 +1,4 @@
-# Deploy web app to Amazon EC2 instance
+# Deploy to Amazon EC2
 
 1. [Create AWS account](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html#cli-signup)
 1. Download Google Authenticatior App for iPhone
