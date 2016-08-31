@@ -1,3 +1,5 @@
+# Setup Bundler
+
 1. Add _Gemfile_
 
   ```ruby
