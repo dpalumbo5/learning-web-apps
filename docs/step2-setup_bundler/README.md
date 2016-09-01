@@ -1,5 +1,15 @@
 # Setup Bundler
 
+## Questions
+
+1. What is a Bundler?
+
+1. What is a package manager?
+
+1. What is a Gemfile?
+
+## Instructions
+
 1. Add _Gemfile_
 
   ```ruby
