@@ -2,25 +2,54 @@
 
 ## Questions
 
-1. What is the difference between `GET`, `POST`, `PUT`, `DELETE` http methods?
+1. What are some differences between a `GET` and a `POST` http method?
 1. What is an HTTP Status? What are some common examples?
 1. What is JSON?
 
 ## Instructions
 
-1. Add 'sinatra-param' gem to _Gemfile_
+1. Add Sinatra Reloader, Rack Parser, JSON gems
 
   ```ruby
   # Gemfile
   ...
-
-  gem 'sinatra-params'
+  gem 'sinatra-contrib'
+  gem 'rack-parser', require: 'rack/parser'
+  gem 'json'
   ```
 
-1. Install new bundle
+  ```ruby
+  #app.rb
+  require 'sinatra'
+  require 'sinatra/param'
+  require 'sinatra/reloader'
+  require 'json'
+  require 'rack/parser'
+  require 'sinatra/json'
 
-  ```bash
-  bundle install
+  class HelloWorldApp < Sinatra::Base
+    helpers Sinatra::Param
+
+    configure :development do
+      register Sinatra::Reloader
+    end
+
+    before do
+      content_type :json
+      request.body.rewind
+      @request_body    = request.body.read
+      @request_payload = JSON.parse(@request_body) unless @request_body.empty?
+    end
+
+  ...
+  ```
+
+1. `require` JSON gem
+  ```ruby
+  # app.rb
+  ...
+  require 'json'
+  ...
   ```
 
 1. Add `POST` endpoint
@@ -29,34 +58,14 @@
   # app.rb
 
   class HelloWorldApp < Sinatra::Base
-
     ...
-
 
     post '/notes' do
       param :comment, String, required: true
       param :category, String, required: false
 
       status 201
-      "Received comment with category #{params[:category]}"
-    end
-  end
-  ```
-
-1. Add `PUT` endpoint
-
-  class HelloWorldApp < Sinatra::Base
-
-    ...
-
-
-    put '/notes:id' do
-      param :id, Integer, required: true
-      param :comment, String, required: true
-      param :category, String, required: false
-
-      status 201
-      "Received comment with category #{params[:category]}"
+      json note: "Received comment with category #{params[:category]}"
     end
   end
   ```

@@ -12,6 +12,10 @@
 
 1. Add _Gemfile_
 
+  ```bash
+  touch Gemfile
+  ```
+
   ```ruby
   # Gemfile
 
@@ -19,6 +23,7 @@
 
   # application server
   gem 'sinatra'
+  gem 'sinatra-param', require: 'sinatra-param'
 
   # orm
   gem 'activerecord'
@@ -38,6 +43,18 @@
 
   ```bash
   bundle install
+  ```
+
+1. Add config folder
+
+  ```bash
+  mkdir config/
+  ```
+
+1. Add _boot.rb_
+
+  ```bash
+  touch config/boot.rb
   ```
 
 1. Set up Bundler

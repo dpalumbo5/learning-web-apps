@@ -32,6 +32,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    backports (3.6.8)
     builder (3.2.2)
     coderay (1.1.1)
     erubis (2.7.0)
@@ -42,6 +43,7 @@ GEM
     method_source (0.8.2)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
+    multi_json (1.12.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
@@ -52,6 +54,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.6.4)
+    rack-parser (0.4.0)
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -74,6 +78,15 @@ GEM
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    sinatra-contrib (1.4.7)
+      backports (>= 2.0)
+      multi_json
+      rack-protection
+      rack-test
+      sinatra (~> 1.4.0)
+      tilt (>= 1.3, < 3)
+    sinatra-param (1.4.0)
+      sinatra (~> 1.3)
     slop (3.6.0)
     thor (0.19.1)
     thread_safe (0.3.5)
@@ -90,7 +103,10 @@ DEPENDENCIES
   json
   pg
   pry
+  rack-parser
   sinatra
+  sinatra-contrib
+  sinatra-param
 
 BUNDLED WITH
    1.10.6
