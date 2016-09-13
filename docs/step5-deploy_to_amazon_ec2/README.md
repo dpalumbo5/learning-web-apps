@@ -29,6 +29,27 @@
     ```
 1. Clone the *learning-web-apps* repo into the instance
     ```bash
-    git clone git@github.com:jackblandin/learning-web-apps.git
+    git clone https://github.com/jackblandin/learning-web-apps.git
     ```
+
+## Install Nginx and Unicorn
+1. Install nginx on instance-1:
+    ```bash
+    sudo-apt-get install nginx
+    ```
+1. Install Bundler on instance-1
+    ```bash
+    sudo apt-get install bundler
+    ``` 
+1. Install ruby on instance-1
+2. Install rbenv on instance-1
+
+1. Install Unicorn on instance-1
+    ```
+    sudo apt-get install 
+    
+
+
+
+
     
