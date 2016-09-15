@@ -33,10 +33,6 @@
     ```bash
     sudo-apt-get install nginx
     ```
-1. Install *Bundler*
-    ```bash
-    sudo apt-get install bundler
-    ``` 
 1. Install *rbenv*
     ```bash
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
@@ -68,9 +64,17 @@
     ```bash
     rbenv install 2.1.2
     ```
+1. Install *Bundler*
+    ```bash
+    gem install bundler
+    ``` 
 1. Install *Unicorn*
     ```bash
     gem install unicorn
+    ```
+1. Install *postgresql*
+    ```bash
+    sudo apt-get install postgresql libpq-dev
     ```
 
 ## Pull in your codebase
@@ -79,6 +83,60 @@
     ```bash
     git clone https://github.com/jackblandin/learning-web-apps.git
     ```
+1. Install bundles
+    ```bash
+    bundle install
+    ```
+
+    If this fails, try this:
+    ```bash
+    sudo chown -R ubuntu /home/ubuntu/.bundle
+    bundle install
+    ```
 
 ## Setup application server (Unicorn)
-1. Create a *unicorn*.rb file in `/var/www/my_app/` directory
+1. Create */var/www/* directory
+    ```bash
+    cd /var
+    sudo mkdir www
+    ```
+1. Create a *unicorn*.rb file in `/var/www/notes-svc/` directory
+    ```bash
+    cd www
+    sudo mkdir notes-svc
+    cd notes-svc
+    sudo touch unicorn.rb
+    ```
+    ```rb
+    # unicorn.rb
+
+    # Set the working application directory
+    # working_directory "/path/to/your/app"
+    working_directory "/var/www/notes-svc"
+
+    # Unicorn PID file location
+    # pid "/path/to/pids/unicorn.pid"
+    pid "/var/www/notes-svc/pids/unicorn.pid"
+
+    # Path to logs
+    # stderr_path "/path/to/logs/unicorn.log"
+    # stdout_path "/path/to/logs/unicorn.log"
+    stderr_path "/var/www/notes-svc/logs/unicorn.log"
+    stdout_path "/var/www/notes-svc/logs/unicorn.log"
+
+    # Unicorn socket
+    # listen "/tmp/unicorn.[app name].sock"
+    listen "/tmp/unicorn.notessvc.sock"
+
+    # Number of processes
+    # worker_processes 4
+    worker_processes 2
+
+    # Time-out
+    timeout 30
+    ```
+1. Test *Unicorn*
+    ```bash
+    cd ~/apps/notes_app/
+    unicorn
+    ```
