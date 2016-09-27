@@ -16,147 +16,148 @@
 1. Add `secrets` to the *.gitignore* file
 1. Go to to EC2 managment console, select *instance-1* and click the *Connect* button.
 1. In your terminal, change the permissions for the *instance-1.pem* file to not be publicly viewable  
-    ```sh
-    chmod 400 secret/instance-1.pem
-    ```
+  ```bash
+  chmod 400 secret/instance-1.pem
+  ```
 1. ssh into the instance  
-    ```sh
-    ssh -i "secret/instance-1.pem" ubuntu@ec2-54-213-141-131.us-west-2.compute.amazonaws.com
-    ```
+  ```bash
+  ssh -i "secret/instance-1.pem" ubuntu@ec2-54-213-141-131.us-west-2.compute.amazonaws.com
+  ```
 
 ## Install packages
 1. Update *apt-get*:  
-    ```sh
-    sudo apt-get update
-    ```
+  ```bash
+  sudo apt-get update
+  ```
 1. Install *git*  
-    ```sh
-    sudo apt-get install git
-    ```
+  ```bash
+  sudo apt-get install git
+  ```
 1. Install *Nginx*  
-    ```sh
-    sudo-apt-get install nginx
-    ```
+  ```bash
+  sudo-apt-get install nginx
+  ```
 1. Install *rbenv*  
-    ```sh
-    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-    ```
+  ```bash
+  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+  ```
 1. Install *ruby-build*  
-    ```sh
-    git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-    ```
+  ```bash
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  ```
 1. Create *.bashrc.local* with *rbenv*/*ruby-build* shims  
-    ```sh
-    touch ~/.bashrc.local
-    ```
-    ```sh
-    # .bashrc.local
+  ```bash
+  touch ~/.bashrc.local
+  ```
+  ```bash
+  # .bashrc.local
 
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-    eval "$(rbenv init -)"
-    ```
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+  eval "$(rbenv init -)"
+  ```
 1. Source *.bashrc.local* from *.bashrc*  
-    ```sh
-    # .bashrc
+  ```bash
+  # .bashrc
 
-    ...
+  ...
 
-    source ~/.bashrc.local
-    ```
+  source ~/.bashrc.local
+  ```
 1. Reload bash env:  
-    ```sh
-    source ~/.bashrc
-    ```
+  ```bash
+  source ~/.bashrc
+  ```
 1. Install *build-essentail* to install *C* comppiler:  
-    ```sh
-    sudo apt-get install build-essential
-    ```
+  ```bash
+  sudo apt-get install build-essential
+  ```
 1. Install ruby dependencies:  
-    ```sh
-    sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
-    ```
+  ```bash
+  sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+  ```
 1. Install *Ruby*  
-    ```sh
-    rbenv install 2.1.2
-    ```
+  ```bash
+  rbenv install 2.1.2
+  ```
 1. Set global ruby version:  
-    ```sh
-    rbenv global 2.1.2
-    ```
+  ```bash
+  rbenv global 2.1.2
+  ```
 1. Install *Bundler*  
-    ```sh
-    gem install bundler
-    ``` 
+  ```bash
+  gem install bundler
+  ``` 
 1. Install *Unicorn*  
-    ```sh
-    gem install unicorn
-    ```
+  ```bash
+  gem install unicorn
+  ```
 1. Install *postgresql*  
-    ```sh
-    sudo apt-get install postgresql libpq-dev
-    ```
+  ```bash
+  sudo apt-get install postgresql libpq-dev
+  ```
 
 ## Pull in your codebase
 1. Create a new `/apps` directory in the home folder.
 1. Clone the *learning-web-apps* repo into EC2 instance  
-    ```sh
-    git clone https://github.com/jackblandin/learning-web-apps.git
-    ```
-1. Install bundles  
-    ```sh
-    bundle install
-    ```
+  ```bash
+  git clone https://github.com/jackblandin/learning-web-apps.git
+  ```
 
-    If this fails, try this:
-    ```sh
-    sudo chown -R ubuntu /home/ubuntu/.bundle
-    bundle install
-    ```
+1. Install bundles  
+  ```bash
+  bundle install
+  ```
+
+  If this fails, try this:
+  ```bash
+  sudo chown -R ubuntu /home/ubuntu/.bundle
+  bundle install
+  ```
 
 ## Setup application server (Unicorn)
 1. Create */var/www/* directory  
-    ```sh
-    cd /var
-    sudo mkdir www
-    ```
+  ```bash
+  cd /var
+  sudo mkdir www
+  ```
 1. Create a *unicorn*.rb file in `/var/www/notes-svc/` directory  
-    ```sh
-    cd www
-    sudo mkdir notes-svc
-    cd notes-svc
-    sudo touch unicorn.rb
-    ```
-    ```rb
-    # unicorn.rb
+  ```bash
+  cd www
+  sudo mkdir notes-svc
+  cd notes-svc
+  sudo touch unicorn.rb
+  ```
+  ```rb
+  # unicorn.rb
 
-    # Set the working application directory
-    # working_directory "/path/to/your/app"
-    working_directory "/var/www/notes-svc"
+  # Set the working application directory
+  # working_directory "/path/to/your/app"
+  working_directory "/var/www/notes-svc"
 
-    # Unicorn PID file location
-    # pid "/path/to/pids/unicorn.pid"
-    pid "/var/www/notes-svc/pids/unicorn.pid"
+  # Unicorn PID file location
+  # pid "/path/to/pids/unicorn.pid"
+  pid "/var/www/notes-svc/pids/unicorn.pid"
 
-    # Path to logs
-    # stderr_path "/path/to/logs/unicorn.log"
-    # stdout_path "/path/to/logs/unicorn.log"
-    stderr_path "/var/www/notes-svc/logs/unicorn.log"
-    stdout_path "/var/www/notes-svc/logs/unicorn.log"
+  # Path to logs
+  # stderr_path "/path/to/logs/unicorn.log"
+  # stdout_path "/path/to/logs/unicorn.log"
+  stderr_path "/var/www/notes-svc/logs/unicorn.log"
+  stdout_path "/var/www/notes-svc/logs/unicorn.log"
 
-    # Unicorn socket
-    # listen "/tmp/unicorn.[app name].sock"
-    listen "/tmp/unicorn.notessvc.sock"
+  # Unicorn socket
+  # listen "/tmp/unicorn.[app name].sock"
+  listen "/tmp/unicorn.notessvc.sock"
 
-    # Number of processes
-    # worker_processes 4
-    worker_processes 2
+  # Number of processes
+  # worker_processes 4
+  worker_processes 2
 
-    # Time-out
-    timeout 30
-    ```
+  # Time-out
+  timeout 30
+  ```
 1. Test *Unicorn*  
-    ```sh
-    cd ~/apps/notes_app/
-    unicorn
-    ```
+  ```bash
+  cd ~/apps/notes_app/
+  unicorn
+  ```
