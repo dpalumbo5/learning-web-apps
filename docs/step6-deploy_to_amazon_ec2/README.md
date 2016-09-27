@@ -19,17 +19,17 @@
   ```bash
   chmod 400 secret/instance-1.pem
   ```
-1. ssh into the instance  
+1. ssh into the instanc
   ```bash
   ssh -i "secret/instance-1.pem" ubuntu@ec2-54-213-141-131.us-west-2.compute.amazonaws.com
   ```
 
 ## Install packages
-1. Update *apt-get*:  
+1. Update *apt-get*
   ```bash
   sudo apt-get update
   ```
-1. Install *git*  
+1. Install *git*
   ```bash
   sudo apt-get install git
   ```
