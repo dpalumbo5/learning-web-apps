@@ -19,7 +19,7 @@
   ```bash
   chmod 400 secret/instance-1.pem
   ```
-1. ssh into the instanc
+1. ssh into the instance
   ```bash
   ssh -i "secret/instance-1.pem" ubuntu@ec2-54-213-141-131.us-west-2.compute.amazonaws.com
   ```
