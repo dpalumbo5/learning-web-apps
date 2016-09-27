@@ -15,33 +15,33 @@
 1. Create a *.gitignore* file
 1. Add `secrets` to the *.gitignore* file
 1. Go to to EC2 managment console, select *instance-1* and click the *Connect* button.
-1. In your terminal, change the permissions for the *instance-1.pem* file to not be publicly viewable
-    ```bash
+1. In your terminal, change the permissions for the *instance-1.pem* file to not be publicly viewable  
+  ```bash
     chmod 400 secret/instance-1.pem
     ```
-1. ssh into the instance
+1. ssh into the instance  
     ```bash
     ssh -i "secret/instance-1.pem" ubuntu@ec2-54-213-141-131.us-west-2.compute.amazonaws.com
     ```
 
 ## Install packages
-1. Install *git*
+1. Install *git*  
     ```bash
     sudo apt-get install git
     ```
-1. Install *Nginx*
+1. Install *Nginx*  
     ```bash
     sudo-apt-get install nginx
     ```
-1. Install *rbenv*
+1. Install *rbenv*  
     ```bash
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
     ```
-1. Install *ruby-build*
+1. Install *ruby-build*  
     ```bash
     git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     ```
-1. Create *.bashrc.local* with *rbenv*/*ruby-build* shims
+1. Create *.bashrc.local* with *rbenv*/*ruby-build* shims  
     ```bash
     touch ~/.bashrc.local
     ```
@@ -52,7 +52,7 @@
     export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
     eval "$(rbenv init -)"
     ```
-1. Source *.bashrc.local* from *.bashrc*
+1. Source *.bashrc.local* from *.bashrc*  
     ```bash
     # .bashrc
 
@@ -60,30 +60,34 @@
 
     source ~/.bashrc.local
     ```
-1. Install *Ruby*
+1. Reload bash env:  
+    ```bash
+    source ~/.bashrc
+    ```
+1. Install *Ruby*  
     ```bash
     rbenv install 2.1.2
     ```
-1. Install *Bundler*
+1. Install *Bundler*  
     ```bash
     gem install bundler
     ``` 
-1. Install *Unicorn*
+1. Install *Unicorn*  
     ```bash
     gem install unicorn
     ```
-1. Install *postgresql*
+1. Install *postgresql*  
     ```bash
     sudo apt-get install postgresql libpq-dev
     ```
 
 ## Pull in your codebase
 1. Create a new `/apps` directory in the home folder.
-1. Clone the *learning-web-apps* repo into EC2 instance
+1. Clone the *learning-web-apps* repo into EC2 instance  
     ```bash
     git clone https://github.com/jackblandin/learning-web-apps.git
     ```
-1. Install bundles
+1. Install bundles  
     ```bash
     bundle install
     ```
@@ -95,12 +99,12 @@
     ```
 
 ## Setup application server (Unicorn)
-1. Create */var/www/* directory
+1. Create */var/www/* directory  
     ```bash
     cd /var
     sudo mkdir www
     ```
-1. Create a *unicorn*.rb file in `/var/www/notes-svc/` directory
+1. Create a *unicorn*.rb file in `/var/www/notes-svc/` directory  
     ```bash
     cd www
     sudo mkdir notes-svc
@@ -135,7 +139,7 @@
     # Time-out
     timeout 30
     ```
-1. Test *Unicorn*
+1. Test *Unicorn*  
     ```bash
     cd ~/apps/notes_app/
     unicorn
