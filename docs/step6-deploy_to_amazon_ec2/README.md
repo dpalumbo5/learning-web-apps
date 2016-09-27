@@ -121,6 +121,7 @@
 
 1. Install bundles  
   ```bash
+  cd learning-web-apps
   bundle install
   ```
 
@@ -177,4 +178,53 @@
   ```bash
   cd ~/apps/notes_app/
   unicorn
+  ```
+
+## Tell Nginx how to talk to Unicorn
+1. Remove nginx default configuration file
+  ```bash
+  sudo rm -v /etc/nginx/sites-available/default
+  ```
+
+1. Create a new, blank configuration
+  ```bash
+  sudo vim /etc/nginx/conf.d/default.conf
+  ```
+  ```
+  # default.conf
+
+  upstream app {
+      # Path to Unicorn SOCK file, as defined previously
+      server unix:/tmp/unicorn.myapp.sock fail_timeout=0;
+  }
+
+  server {
+      listen 80;
+
+      # Set the server name, similar to Apache's settings
+      server_name localhost;
+
+      # Application root, as defined previously
+      root /var/www/notes_svc/public;
+
+      try_files $uri/index.html $uri @app;
+
+      location @app {
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $http_host;
+          proxy_redirect off;
+          proxy_pass http://app;
+      }
+
+      error_page 500 502 503 504 /500.html;
+      client_max_body_size 4G;
+      keepalive_timeout 10;
+
+  }  
+  ```
+
+1. Start Unicorn and run it as a daemon using the config file
+  ```bash
+  cd ~/apps/notes_svc
+  unicorn -c unicorn.rb -D
   ```
