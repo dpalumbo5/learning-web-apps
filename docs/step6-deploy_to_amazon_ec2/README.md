@@ -30,22 +30,27 @@
   ```bash
   sudo apt-get update
   ```
+
 1. Install *git*
   ```bash
   sudo apt-get install git
   ```
+
 1. Install *Nginx*  
   ```bash
   sudo-apt-get install nginx
   ```
+
 1. Install *rbenv*  
   ```bash
   git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   ```
+
 1. Install *ruby-build*  
   ```bash
   git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
   ```
+
 1. Create *.bashrc.local* with *rbenv*/*ruby-build* shims  
   ```bash
   touch ~/.bashrc.local
@@ -57,6 +62,7 @@
   export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
   eval "$(rbenv init -)"
   ```
+
 1. Source *.bashrc.local* from *.bashrc*
   ```bash
   # .bashrc
@@ -65,34 +71,42 @@
 
   source ~/.bashrc.local
   ```
+
 1. Reload bash env:  
   ```bash
   source ~/.bashrc
   ```
+
 1. Install *build-essentail* to install *C* comppiler:  
   ```bash
   sudo apt-get install build-essential
   ```
+
 1. Install ruby dependencies:  
   ```bash
   sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
   ```
+
 1. Install *Ruby*  
   ```bash
   rbenv install 2.1.2
   ```
+
 1. Set global ruby version:  
   ```bash
   rbenv global 2.1.2
   ```
+
 1. Install *Bundler*  
   ```bash
   gem install bundler
   ``` 
+
 1. Install *Unicorn*  
   ```bash
   gem install unicorn
   ```
+
 1. Install *postgresql*  
   ```bash
   sudo apt-get install postgresql libpq-dev
@@ -122,6 +136,7 @@
   cd /var
   sudo mkdir www
   ```
+
 1. Create a *unicorn*.rb file in `/var/www/notes-svc/` directory  
   ```bash
   cd www
@@ -157,6 +172,7 @@
   # Time-out
   timeout 30
   ```
+
 1. Test *Unicorn*  
   ```bash
   cd ~/apps/notes_app/
