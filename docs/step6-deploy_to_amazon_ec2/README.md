@@ -16,36 +16,40 @@
 1. Add `secrets` to the *.gitignore* file
 1. Go to to EC2 managment console, select *instance-1* and click the *Connect* button.
 1. In your terminal, change the permissions for the *instance-1.pem* file to not be publicly viewable  
-    ```bash
+    ```sh
     chmod 400 secret/instance-1.pem
     ```
 1. ssh into the instance  
-    ```bash
+    ```sh
     ssh -i "secret/instance-1.pem" ubuntu@ec2-54-213-141-131.us-west-2.compute.amazonaws.com
     ```
 
 ## Install packages
+1. Update *apt-get*:  
+    ```sh
+    sudo apt-get update
+    ```
 1. Install *git*  
-    ```bash
+    ```sh
     sudo apt-get install git
     ```
 1. Install *Nginx*  
-    ```bash
+    ```sh
     sudo-apt-get install nginx
     ```
 1. Install *rbenv*  
-    ```bash
+    ```sh
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
     ```
 1. Install *ruby-build*  
-    ```bash
+    ```sh
     git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
     ```
 1. Create *.bashrc.local* with *rbenv*/*ruby-build* shims  
-    ```bash
+    ```sh
     touch ~/.bashrc.local
     ```
-    ```bash
+    ```sh
     # .bashrc.local
 
     export PATH="$HOME/.rbenv/bin:$PATH"
@@ -53,7 +57,7 @@
     eval "$(rbenv init -)"
     ```
 1. Source *.bashrc.local* from *.bashrc*  
-    ```bash
+    ```sh
     # .bashrc
 
     ...
@@ -61,51 +65,63 @@
     source ~/.bashrc.local
     ```
 1. Reload bash env:  
-    ```bash
+    ```sh
     source ~/.bashrc
     ```
+1. Install *build-essentail* to install *C* comppiler:  
+    ```sh
+    sudo apt-get install build-essential
+    ```
+1. Install ruby dependencies:  
+    ```sh
+    sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
+    ```
 1. Install *Ruby*  
-    ```bash
+    ```sh
     rbenv install 2.1.2
     ```
+1. Set global ruby version:  
+    ```sh
+    rbenv global 2.1.2
+    ```
 1. Install *Bundler*  
-    ```bash
+    ```sh
     gem install bundler
     ``` 
 1. Install *Unicorn*  
-    ```bash
+    ```sh
     gem install unicorn
     ```
 1. Install *postgresql*  
-    ```bash
+    ```sh
     sudo apt-get install postgresql libpq-dev
     ```
 
 ## Pull in your codebase
 1. Create a new `/apps` directory in the home folder.
 1. Clone the *learning-web-apps* repo into EC2 instance  
-    ```bash
+    ```sh
     git clone https://github.com/jackblandin/learning-web-apps.git
     ```
 1. Install bundles  
-    ```bash
+    ```sh
     bundle install
     ```
 
     If this fails, try this:
-    ```bash
+    ```sh
     sudo chown -R ubuntu /home/ubuntu/.bundle
     bundle install
     ```
 
 ## Setup application server (Unicorn)
 1. Create */var/www/* directory  
-    ```bash
+    ```sh
     cd /var
     sudo mkdir www
     ```
 1. Create a *unicorn*.rb file in `/var/www/notes-svc/` directory  
-    ```bash
+    ```sh
     cd www
     sudo mkdir notes-svc
     cd notes-svc
@@ -140,7 +156,7 @@
     timeout 30
     ```
 1. Test *Unicorn*  
-    ```bash
+    ```sh
     cd ~/apps/notes_app/
     unicorn
     ```
