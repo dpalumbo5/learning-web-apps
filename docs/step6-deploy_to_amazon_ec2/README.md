@@ -15,7 +15,7 @@
 1. Create a *.gitignore* file
 1. Add `secrets` to the *.gitignore* file
 1. Go to to EC2 managment console, select *instance-1* and click the *Connect* button.
-1. In your terminal, change the permissions for the *instance-1.pem* file to not be publicly viewable  
+1. In your terminal, change the permissions for the *instance-1.pem* file to not be publicly viewable
   ```bash
   chmod 400 secret/instance-1.pem
   ```
