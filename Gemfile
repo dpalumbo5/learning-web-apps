@@ -6,6 +6,7 @@ gem 'sinatra-param', require: 'sinatra/param'
 gem 'sinatra-contrib'
 gem 'json'
 gem 'rack-parser', require: 'rack/parser'
+gem 'unicorn'
 
 
 # orm
