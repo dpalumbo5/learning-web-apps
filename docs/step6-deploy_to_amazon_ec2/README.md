@@ -56,7 +56,7 @@
   export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
   eval "$(rbenv init -)"
   ```
-1. Source *.bashrc.local* from *.bashrc*  
+1. Source *.bashrc.local* from *.bashrc*
   ```bash
   # .bashrc
 
