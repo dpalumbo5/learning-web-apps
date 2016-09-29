@@ -1,6 +1,10 @@
-require './app'
+require 'rubygems'
+require 'sinatra'
+require 'sinatra/json'
 require 'active_record'
 require 'yaml'
+
+$: << File.expand_path('../../app', __FILE__)
 
 ENV['RACK_ENV'] ||= 'development'
 require 'bundler'
