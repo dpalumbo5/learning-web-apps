@@ -8,5 +8,5 @@
 [Step 6 - Deploy to Amazon EC2](docs/step6-deploy_to_amazon_ec2/README.md)  
 
 
-Homeowrk
+### Homeowrk
 [HW2 - add `completed` column to `notes` table](docs/homework/hw2.md)  
