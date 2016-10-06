@@ -6,3 +6,7 @@
 [Step 4 - Connect to Database](docs/step4-connect_to_database/README.md)  
 [Step 5 - Add ERB Views](docs/step5-add_erb_views/README.md)  
 [Step 6 - Deploy to Amazon EC2](docs/step6-deploy_to_amazon_ec2/README.md)  
+
+
+Homeowrk
+[HW2 - add `completed` column to `notes` table](docs/homework/hw2.md)  
