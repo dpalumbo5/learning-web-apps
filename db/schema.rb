@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831175032) do
+ActiveRecord::Schema.define(version: 20161006163909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
 
   create_table "notes", force: :cascade do |t|
-    t.text   "comment",  null: false
-    t.string "category"
+    t.text    "comment",                   null: false
+    t.string  "category"
+    t.boolean "completed", default: false
   end
 
 end
